@@ -2,7 +2,7 @@
 $name = trim($_POST['contact-name']);
 $email = trim($_POST['contact-email']);
 $company = trim($_POST['contact-company']);
-// $message = trim($_POST['contact-message']);
+$message = trim($_POST['contact-message']);
 if ($name == "") {
     $msg['err'] = "\n Name can not be empty!";
     $msg['field'] = "contact-name";
@@ -12,7 +12,7 @@ if ($name == "") {
     $msg['field'] = "contact-email";
     $msg['code'] = FALSE;
 } else if ($company == "") {
-    $msg['err'] = "\n Company Name can not be empty!";
+    $msg['err'] = "\n Contact can not be empty!";
     $msg['field'] = "contact-company";
     $msg['code'] = FALSE;
 } else if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
@@ -20,11 +20,11 @@ if ($name == "") {
     $msg['field'] = "contact-email";
     $msg['code'] = FALSE;
 }
-// } else if ($message == "") {
-//     $msg['err'] = "\n Message can not be empty!";
-//     $msg['field'] = "contact-message";
-//     $msg['code'] = FALSE;
-// } 
+ else if ($message == "") {
+    $msg['err'] = "\n Message can not be empty!";
+    $msg['field'] = "contact-message";
+    $msg['code'] = FALSE;
+} 
   else {
     $to = 'contact@ontoclassroom.com';
     $subject = 'Ontoclassroom Contact Query';
@@ -32,7 +32,7 @@ if ($name == "") {
     $_message .= '<p>Name: ' . $name . '</p>';
     $_message .= '<p>Email: ' . $email . '</p>';
     $_message .= '<p>Company: ' . $company . '</p>';
-    // $_message .= '<p>Message: ' . $message . '</p>';
+    $_message .= '<p>Message: ' . $message . '</p>';
     $_message .= '</body></html>';
 
     $headers = 'MIME-Version: 1.0' . "\r\n";
